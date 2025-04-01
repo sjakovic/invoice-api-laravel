@@ -44,7 +44,33 @@ A robust RESTful API built with Laravel for managing invoices, companies, and in
 - **Authentication**: Laravel Sanctum
 - **PDF Generation**: DomPDF
 - **Database**: MySQL/PostgreSQL
-- **API Documentation**: OpenAPI/Swagger
+- **API Documentation**: Scribe
+
+## API Documentation
+
+The API documentation is automatically generated using Scribe. You can access it in several ways:
+
+### Interactive Documentation
+1. Start the Laravel development server:
+   ```bash
+   php artisan serve
+   ```
+2. Visit `http://localhost:8002/docs` in your browser
+3. Use the interactive "Try it out" feature to test endpoints directly from the browser
+
+### Postman Collection
+- Access the Postman collection at `http://localhost:8002/docs.postman`
+- Import this collection into Postman for easy API testing
+
+### OpenAPI Specification
+- Access the OpenAPI specification at `http://localhost:8002/docs.openapi`
+- Use this specification with any OpenAPI-compatible tool
+
+### Authentication in Documentation
+1. First, use the `/api/register` or `/api/login` endpoint to get a token
+2. Click the "Authorize" button at the top of the documentation
+3. Enter your token in the format: `Bearer your-token-here`
+4. Now you can test all authenticated endpoints
 
 ## API Endpoints
 

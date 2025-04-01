@@ -8,12 +8,38 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\UserResource;
 
-// Optional: To format the response if needed
-
+/**
+ * @group Authentication
+ * 
+ * APIs for managing user authentication
+ */
 class AuthController extends Controller
 {
     /**
-     * Register a new user.
+     * Register a new user
+     * 
+     * Create a new user account and return an authentication token.
+     * 
+     * @bodyParam name string required The name of the user. Example: John Doe
+     * @bodyParam email string required The email address of the user. Example: john@example.com
+     * @bodyParam password string required The password for the account. Must be at least 8 characters. Example: password123
+     * 
+     * @response 201 {
+     *  "user": {
+     *    "id": 1,
+     *    "name": "John Doe",
+     *    "email": "john@example.com",
+     *    "created_at": "2024-03-19T12:00:00.000000Z",
+     *    "updated_at": "2024-03-19T12:00:00.000000Z"
+     *  },
+     *  "token": "1|abcdef123456..."
+     * }
+     * @response 422 {
+     *  "message": "The given data was invalid.",
+     *  "errors": {
+     *    "email": ["The email has already been taken."]
+     *  }
+     * }
      */
     public function register(Request $request)
     {
@@ -41,7 +67,26 @@ class AuthController extends Controller
     }
 
     /**
-     * Login a user and return a token.
+     * Login user
+     * 
+     * Authenticate a user and return an authentication token.
+     * 
+     * @bodyParam email string required The email address of the user. Example: john@example.com
+     * @bodyParam password string required The password for the account. Example: password123
+     * 
+     * @response 200 {
+     *  "user": {
+     *    "id": 1,
+     *    "name": "John Doe",
+     *    "email": "john@example.com",
+     *    "created_at": "2024-03-19T12:00:00.000000Z",
+     *    "updated_at": "2024-03-19T12:00:00.000000Z"
+     *  },
+     *  "token": "1|abcdef123456..."
+     * }
+     * @response 401 {
+     *  "message": "Unauthorized"
+     * }
      */
     public function login(Request $request)
     {
@@ -67,7 +112,15 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout a user and revoke their token.
+     * Logout user
+     * 
+     * Revoke the current user's authentication token.
+     * 
+     * @authenticated
+     * 
+     * @response 200 {
+     *  "message": "Logged out successfully"
+     * }
      */
     public function logout(Request $request)
     {
