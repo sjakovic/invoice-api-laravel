@@ -15,14 +15,21 @@
             padding-bottom: 20px;
             border-bottom: 2px solid #eee;
         }
-        .company-info {
+        .issuer-info {
             float: left;
             width: 50%;
         }
-        .invoice-info {
+        .client-info {
             float: right;
             width: 50%;
             text-align: right;
+        }
+        .invoice-info {
+            clear: both;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
         .clear {
             clear: both;
@@ -66,30 +73,49 @@
 </head>
 <body>
     <div class="header">
-        <div class="company-info">
-            <h2>{{ $invoice->company->company_name }}</h2>
-            <p>{{ $invoice->company->address }}</p>
-            @if($invoice->company->street_number)
-                <p>{{ $invoice->company->street_number }}</p>
+        <div class="issuer-info">
+            <h2>From:</h2>
+            <h3>{{ $invoice->issuer_company_name }}</h3>
+            <p>{{ $invoice->issuer_address }}</p>
+            @if($invoice->issuer_street_number)
+                <p>{{ $invoice->issuer_street_number }}</p>
             @endif
-            @if($invoice->company->city)
-                <p>{{ $invoice->company->city }}</p>
+            @if($invoice->issuer_city)
+                <p>{{ $invoice->issuer_city }}</p>
             @endif
-            @if($invoice->company->country)
-                <p>{{ $invoice->company->country }}</p>
+            @if($invoice->issuer_country)
+                <p>{{ $invoice->issuer_country }}</p>
             @endif
-            @if($invoice->company->tax_number)
-                <p>Tax Number: {{ $invoice->company->tax_number }}</p>
+            @if($invoice->issuer_tax_number)
+                <p>Tax Number: {{ $invoice->issuer_tax_number }}</p>
             @endif
         </div>
-        <div class="invoice-info">
-            <h1>INVOICE</h1>
-            <p>Invoice #: {{ $invoice->invoice_number }}</p>
-            <p>Date: {{ $invoice->invoice_date->format('Y-m-d') }}</p>
-            <p>Due Date: {{ $invoice->due_date->format('Y-m-d') }}</p>
-            <p>Status: {{ ucfirst($invoice->status) }}</p>
+        <div class="client-info">
+            <h2>To:</h2>
+            <h3>{{ $invoice->client_company_name }}</h3>
+            <p>{{ $invoice->client_address }}</p>
+            @if($invoice->client_street_number)
+                <p>{{ $invoice->client_street_number }}</p>
+            @endif
+            @if($invoice->client_city)
+                <p>{{ $invoice->client_city }}</p>
+            @endif
+            @if($invoice->client_country)
+                <p>{{ $invoice->client_country }}</p>
+            @endif
+            @if($invoice->client_tax_number)
+                <p>Tax Number: {{ $invoice->client_tax_number }}</p>
+            @endif
         </div>
         <div class="clear"></div>
+    </div>
+
+    <div class="invoice-info">
+        <h1>INVOICE</h1>
+        <p>Invoice #: {{ $invoice->invoice_number }}</p>
+        <p>Date: {{ $invoice->invoice_date->format('Y-m-d') }}</p>
+        <p>Due Date: {{ $invoice->due_date->format('Y-m-d') }}</p>
+        <p>Status: {{ ucfirst($invoice->status) }}</p>
     </div>
 
     <table>

@@ -14,6 +14,24 @@ class Invoice extends Model
     protected $fillable = [
         'user_id',
         'company_id',
+        'issuer_company_name',
+        'issuer_address',
+        'issuer_street_number',
+        'issuer_city',
+        'issuer_email',
+        'issuer_country',
+        'issuer_company_number',
+        'issuer_tax_number',
+        'issuer_contact_person',
+        'client_company_name',
+        'client_address',
+        'client_street_number',
+        'client_city',
+        'client_email',
+        'client_country',
+        'client_company_number',
+        'client_tax_number',
+        'client_contact_person',
         'invoice_number',
         'amount',
         'total',
@@ -23,7 +41,7 @@ class Invoice extends Model
         'status',
         'tax',
         'discount',
-        'currency',
+        'currency'
     ];
 
     protected $casts = [
