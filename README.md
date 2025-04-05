@@ -1,6 +1,6 @@
 # Invoice Management API
 
-A robust RESTful API built with Laravel for managing invoices, companies, and invoice items. This API provides a complete solution for handling business invoicing needs with features like PDF generation, company management, and detailed invoice tracking.
+A simple RESTful API built with Laravel for managing invoices, companies, and invoice items. This API provides a solution for handling business invoicing needs with features like PDF generation, company management, and detailed invoice tracking. This is a basic skeleton you can use to build robust API.
 
 ## Features
 
